@@ -1,0 +1,45 @@
+body{
+    background-color: rgb(18, 19, 20);
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.grid{
+    --columns: 2;
+    --rows: 2;
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    grid-template-rows: repeat(var(--rows));
+    grid-gap: 20px;
+    margin: 1% 30% 1% 30%;
+    
+}
+
+.grid > img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.highlighted{
+    filter: brightness(2) saturate(5) contrast(1.5);
+}
+
+.game-info > *{
+    display: inline-block;
+    font-size: 1vw;
+    text-align: center;
+    padding: 10px;
+    width: 16vw;
+    color: white;
+}
+
+#level{
+    float: left;
+    margin-left: 30%;
+}
+
+
+#current-score, #high-score, #all-time-high{
+    float: right;
+    clear: right;
+    margin-right: 30%;
+}
