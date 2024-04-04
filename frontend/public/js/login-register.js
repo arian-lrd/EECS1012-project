@@ -69,3 +69,10 @@ const handleRegistration = (event) => {
 document.getElementById('login-form').addEventListener('submit', handleLogin);
 document.getElementById('register-form').addEventListener('submit', handleRegistration);
 
+
+
+
+//My code
+function redirectToGameplay() {
+    window.location.href = './gameplay.html';
+}

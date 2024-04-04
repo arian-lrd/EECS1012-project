@@ -25,17 +25,26 @@
     <main>
         <!-- Login/Register Form -->
         <section id="login-register">
-            <h2>Login or Register</h2>
+
+            <div>
+                <button id="anonymous-play" onclick="redirectToGameplay()">
+                Play anonymously
+                </button>
+                <p>Your score will not be stored in the scoreboard</p>
+            </div><br>
+            
             <!-- Login Form -->
             <form id="login-form">
+                <h2>Login</h2>
                 <label for="login-email">Email:</label>
                 <input type="email" id="login-email" name="login-email" required>
                 <label for="login-password">Password:</label>
                 <input type="password" id="login-password" name="login-password" required>
                 <button type="submit">Login</button>
-            </form>
+            </form><br>
             <!-- Register Form -->
             <form id="register-form">
+                <h2>Register</h2>
                 <label for="register-username">Username:</label>
                 <input type="text" id="register-username" name="register-username" required>
                 <label for="register-email">Email:</label>
