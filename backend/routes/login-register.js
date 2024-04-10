@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 const {
-    getLoginRegisterPage
+    getLoginRegisterPage,
+    evaluateUser,
+    registerUser
     //list the controllers
 } = require('../controllers/login-register')
 
@@ -16,8 +18,15 @@ const {
 
 router.route('/')
     .get(getLoginRegisterPage)
+    
+
+router.route('/login')
+    .post(evaluateUser);
     //.method(controllers)
 
+
+router.route('/signup')
+    .post(registerUser);
 // router.route('/home')
 //     .get(getHomePage)
 

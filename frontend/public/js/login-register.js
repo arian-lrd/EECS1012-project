@@ -1,5 +1,5 @@
 // Function to handle form submission for login
-const handleLogin = (event) => {
+/* const handleLogin = (event) => {
     event.preventDefault();
     // Get input values
     const username = document.getElementById('username').value;
@@ -69,3 +69,61 @@ const handleRegistration = (event) => {
 document.getElementById('login-form').addEventListener('submit', handleLogin);
 document.getElementById('register-form').addEventListener('submit', handleRegistration);
 
+ */
+
+
+
+
+//My code
+function redirectToGameplay() {
+    window.location.href = './gameplay.html';
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('signup-form').addEventListener('submit', function (e) {
+        var password = document.getElementById('signup-password').value;
+        var confirmPassword = document.getElementById('signup-password-check').value;
+
+        if (password !== confirmPassword) {
+            e.preventDefault(); // Prevent form submission
+            alert('Passwords do not match.');
+        }
+    });
+});
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('signup-form');
+    if (form) {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();  // Prevent the default form submission
+
+            const passwordField = document.getElementById('signup-password');
+
+            // Hash the password
+            const hashedPassword = await sha256(passwordField.value);
+
+            // Replace the password with the hashed password
+            passwordField.value = hashedPassword;
+
+            // Continue with the form submission
+            form.submit();
+        });
+    }
+});
+
+async function sha256(message) {
+    // Encode the string into bytes
+    const msgBuffer = new TextEncoder().encode(message);
+
+    // Hash the message
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+
+    // Convert the ArrayBuffer to hex string
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+    return hashHex;
+}
