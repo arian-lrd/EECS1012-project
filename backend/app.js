@@ -13,7 +13,7 @@ const scoreboardRouter = require('./routes/scoreboard')
 
 //app.use(express.static("../frontend/public")): what's the difference with this?
 app.use(express.static(path.join(__dirname , "../frontend/public")))
-// app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({extended: false}))
 // app.use(express.json())
 
 /* 
