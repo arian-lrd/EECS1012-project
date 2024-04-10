@@ -73,10 +73,7 @@ function handleImgClick(event){
         console.log(`${level}-${playerSequence.length} reaction time: ${afterClick - beforeClick}, score: ${imgScore}`);
         score += imgScore;
 
-        if (restarts == 0){
-            highScore = score;
-        }
-        else if (score > highScore){
+        if (score > highScore){
             highScore = score;
         }
     }
@@ -101,13 +98,12 @@ function handleImgClick(event){
 }
 
 function isCorrect(){
-    numGuessed = playerSequence.length - 1;
-    
-    if (playerSequence.length == 0 || playerSequence[numGuessed] == gameSequence[numGuessed]){
-        return true;
+    for (let i = 0; i < playerSequence.length; i++) {
+        if (playerSequence[i] !== gameSequence[i]) {
+            return false;
+        }
     }
-    
-    return false;
+    return true;
 }
 
 function displayGameInfo(){
@@ -118,7 +114,7 @@ function displayGameInfo(){
 }
 
 function newGame(){
-    resetGameVariables();
+    resetGameVariables(); // Make sure this function resets all game-related variables
     gameTurn();
     displayGameInfo();
 }
@@ -136,17 +132,23 @@ function calclulateScore(beforeClick, afterClick){
 }
 
 function playImgSound(img){
-    if (img == document.getElementById("0")){
-        document.getElementById("highlight0").play();
+    let soundElement;
+
+    if (img.id === "0") {
+        soundElement = document.getElementById("highlight0");
+    } else if (img.id === "1") {
+        soundElement = document.getElementById("highlight1");
+    } else if (img.id === "2") {
+        soundElement = document.getElementById("highlight2");
+    } else if (img.id === "3") {
+        soundElement = document.getElementById("highlight3");
     }
-    if (img == document.getElementById("1")){
-        document.getElementById("highlight1").play();
-    }
-    if (img == document.getElementById("2")){
-        document.getElementById("highlight2").play();
-    }
-    if (img == document.getElementById("3")){
-        document.getElementById("highlight3").play();
+
+    if (soundElement) {
+        soundElement.play().catch(error => {
+            console.error("Error playing sound:", error);
+            // Handle the error (e.g., by showing UI to ask the user to start playback)
+        });
     }
 }
 
@@ -156,6 +158,7 @@ function resetGameVariables(){
     playerTimes = [];
     level = 1;
     score = 0;
+    //restarts = 0; // Ensure restarts are also reset if necessary
     highlightTime = 500;
     nextImgDelay = 300;
     document.getElementById("mistake").pause();
@@ -166,8 +169,68 @@ function gameOver(){
     disableImgs();
     restarts ++;
     // display restart menu
+    sendScoreToServer();
+    const startGameButton = document.getElementById('start-game-btn');
+    startGameButton.style.display = 'block'; // Unhide the button on game over
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const startGameButton = document.getElementById('start-game-btn');
+    startGameButton.addEventListener('click', () => {
+        newGame();  // Call the function that starts the game
+        startGameButton.style.display = 'none';  // Optionally hide the button after starting the game
+    });
+});
+
+//newGame();
+
+async function fetchHighScore() {
+    try {
+        const response = await fetch('/gameplay/highscore');
+        if (!response.ok) {
+            throw new Error('Failed to fetch high score');
+        }
+        const { highScore } = await response.json();
+        displayHighScore(highScore);
+    } catch (error) {
+        console.error('Error fetching high score:', error);
+    }
+}
+
+function displayHighScore(highScore) {
+    const highScoreElement = document.getElementById("high-score");
+    highScoreElement.textContent = `High score: ${highScore}`;
 }
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Assuming you want to fetch the high score as soon as the page loads
+    fetchHighScore();
+});
 
-newGame();
+
+async function sendScoreToServer() {
+    try {
+        const response = await fetch('/gameplay/update-score', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                // Assuming you're storing the JWT in a cookie named 'token'
+                'Authorization': 'Bearer ' + document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]
+            },
+            body: JSON.stringify({ score: score })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to update score');
+        }
+
+        const result = await response.json();
+        if (result.success && result.highScore) {
+            allTimeHigh = result.highScore; // Update all-time high score if needed
+            displayGameInfo(); // Refresh the display to show the new all-time high score
+        }
+    } catch (error) {
+        console.error('Error sending score to server:', error);
+    }
+}

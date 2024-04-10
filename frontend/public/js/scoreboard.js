@@ -1,36 +1,32 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Sample scoreboard data
-    const scoreboardData = [
-        { player: 'Player 1', score: 100 },
-        { player: 'Player 2', score: 95 },
-        { player: 'Player 3', score: 90 },
-        // Add more player data as needed
-    ];
-
-    // Reference to the scoreboard section
-    const scoreboardSection = document.getElementById('scoreboard');
-
-    // Function to create scoreboard entries
-    function createScoreboardEntry(player, score) {
-        const entry = document.createElement('div');
-        entry.classList.add('scoreboard-entry');
-        entry.innerHTML = `
-            <span class="player">${player}</span>
-            <span class="score">${score}</span>
-        `;
-        return entry;
-    }
-
-    // Function to render the scoreboard
-    function renderScoreboard(data) {
-        scoreboardSection.innerHTML = ''; // Clear previous entries
-        data.forEach(({ player, score }) => {
-            const entry = createScoreboardEntry(player, score);
-            scoreboardSection.appendChild(entry);
+// scoreboard.js
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('/scoreboard/topten')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Failed to fetch top ten scores: ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            displayScoreboard(data);
+        })
+        .catch(error => {
+            console.error('Error fetching top ten scores:', error);
+            const scoreboardSection = document.getElementById('scoreboard');
+            scoreboardSection.textContent = 'Error loading scoreboard.';
         });
-    }
-
-    // Initially render the scoreboard with sample data
-    renderScoreboard(scoreboardData);
 });
 
+function displayScoreboard(scores) {
+    const scoreboardSection = document.getElementById('scoreboard');
+    scoreboardSection.innerHTML = '';  // Clear any existing content
+    const list = document.createElement('ol');
+
+    scores.forEach(user => {
+        const item = document.createElement('li');
+        item.textContent = `${user.username} - ${user.highScore}`;
+        list.appendChild(item);
+    });
+
+    scoreboardSection.appendChild(list);
+}

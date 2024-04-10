@@ -17,7 +17,7 @@
   {
     "username": "1@g.ca",
     "password": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
-    "highScore": 0
+    "highScore": 10000
   },
   {
     "username": "2@g.ca",
@@ -37,6 +37,36 @@
   {
     "username": "5@g.ca",
     "password": "$2b$10$V8BDriktvq7EsP.QPLi5BO2apRwYcGxS9GYmIiW4RvZtctsw/np3m",
+    "highScore": 0
+  },
+  {
+    "username": "arian@test.ca",
+    "password": "$2b$10$WQ3QuhhV6J/3HeA1TMCH1.VFEO97hhdWve1GiNRIKxmbJ51KQIHNu",
+    "highScore": 0
+  },
+  {
+    "username": "arianNew@test.ca",
+    "password": "$2b$10$B1UTiD2EYEGF5x63e/.ieu.TfRg8CEkc1M9TeFGZncvEipJm4GDhe",
+    "highScore": 0
+  },
+  {
+    "username": "11@gmail.com",
+    "password": "$2b$10$diBBRsqYxmVQ/HD5oOakEeWWJo0dSqSz5VXvX11gYF2LxlhlcG0US",
+    "highScore": 0
+  },
+  {
+    "username": "111@gmail.com",
+    "password": "$2b$10$YwBpUgbYMxqIkuSlx597D.MvLYRdpxjCgRTgtRWl3x5GeJczgJdE2",
+    "highScore": 0
+  },
+  {
+    "username": "aa@gmail.com",
+    "password": "$2b$10$GXB4Cvb6M.6GXHNAVZUWyeKFdtJq3bDbrwdyFXh1DhebsEEwGrvgO",
+    "highScore": 0
+  },
+  {
+    "username": "a1@gmail.com",
+    "password": "$2b$10$UBN5/u4oT9RuoHLuyZppfOzTDLKmvZTeUz/e7IOBX5xz1PVhw9WLe",
     "highScore": 0
   }
 ]

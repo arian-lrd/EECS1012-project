@@ -1,0 +1,35 @@
+[
+    {
+      "username": "3@gmail.com",
+      "highScore": "3000"
+    },
+    {
+      "username": "2@gmail.com",
+      "highScore": "2000"
+    },
+    {
+      "username": "1@gmail.com",
+      "highScore": "1000"
+    },
+    {
+      "username": "1@g.ca",
+      "highScore": 10000
+    },
+    {
+      "username": "2@g.ca",
+      "highScore": 0
+    },
+    {
+      "username": "3@g.ca",
+      "highScore": 0
+    },
+    {
+      "username": "4@g.ca",
+      "highScore": 0
+    },
+    {
+      "username": "5@g.ca",
+      "highScore": 0
+    }
+  ]
+  
