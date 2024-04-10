@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const {
-    getScoreboardPage
+    getScoreboardPage,
+    getTopScores
     //list the controllers
 } = require('../controllers/scoreboard')
 
@@ -17,6 +18,9 @@ const {
 router.route('/')
     .get(getScoreboardPage)
     //.method(controllers)
+
+router.route('/topTen')
+    .get(getTopScores)
 
 // router.route('/home')
 //     .get(getHomePage)
