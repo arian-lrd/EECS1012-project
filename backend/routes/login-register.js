@@ -4,7 +4,8 @@ const router = express.Router();
 const {
     getLoginRegisterPage,
     evaluateUser,
-    registerUser
+    registerUser,
+    cookieJwtAuth
     //list the controllers
 } = require('../controllers/login-register')
 
@@ -17,7 +18,7 @@ const {
 
 
 router.route('/')
-    .get(getLoginRegisterPage)
+    .get(cookieJwtAuth, getLoginRegisterPage)
     
 
 router.route('/login')
@@ -27,6 +28,11 @@ router.route('/login')
 
 router.route('/signup')
     .post(registerUser);
+
+router.post('/logout', (req, res) => {
+    res.clearCookie('token');  // Replace 'token' with the name of your cookie
+    res.sendStatus(200);  // Send back a success status
+});
 // router.route('/home')
 //     .get(getHomePage)
 

@@ -1,6 +1,10 @@
 const path = require('path');
 const fs = require('fs')
 
+const  {
+    cookieJwtAuth
+} = require(path.join(__dirname, '..', 'controllers', 'login-register.js'))
+
 const dataFilePath = path.join(__dirname, '..', 'records', 'data.json');
 
 // Function to read user data from the JSON file
@@ -30,7 +34,7 @@ const getGameplay = (req, res)=>{
 
 
 const getUserHighScore = (req, res) => {
-    const username = req.session.username || "defaultUser"; // Fallback to 'defaultUser' if session username is not set
+    const username = req.user.username//What?
 
     readUserData((err, users) => {
         if (err) {
@@ -47,8 +51,12 @@ const getUserHighScore = (req, res) => {
 };
 
 
+function updateUserData(users, callback) {
+    fs.writeFile(dataFilePath, JSON.stringify(users, null, 2), 'utf8', callback);
+}
+
 const updateScore = (req, res) => {
-    const username = req.session.username || "defaultUser";
+    const username = req.user.username;
     const { score } = req.body;  // Assuming the score is sent in the request body
 
     readUserData((err, users) => {
@@ -61,14 +69,21 @@ const updateScore = (req, res) => {
         if (user) {
             if (score > user.highScore) {
                 user.highScore = score;
-                // Write the updated users data back to the file
-                fs.writeFile(dataFilePath, JSON.stringify(users), (writeErr) => {
+                updateUserData(users, (writeErr) => {
                     if (writeErr) {
-                        console.error('Error writing user data:', writeErr);
-                        return res.status(500).send('Error updating user score');
+                        console.error("Error writing user data:", writeErr);
+                        return res.status(500).send("Error updating user score");
                     }
-                    res.json({ success: true, highScore: user.highScore });
+                    res.json({success: true, highScore: user.highScore});
                 });
+                // Write the updated users data back to the file
+                // fs.writeFile(dataFilePath, JSON.stringify(users), (writeErr) => {
+                //     if (writeErr) {
+                //         console.error('Error writing user data:', writeErr);
+                //         return res.status(500).send('Error updating user score');
+                //     }
+                //     res.json({ success: true, highScore: user.highScore });
+                // });
             } else {
                 res.json({ success: true, highScore: user.highScore });  // No update needed
             }

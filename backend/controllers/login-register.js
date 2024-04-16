@@ -95,9 +95,35 @@ const registerUser = (req, res) => {
 };
 
 
+const cookieJwtAuth = (req, res, next) => {
+    console.log(`\n\n\n\nThe request is ${req} \n\n\n\n`)
+    console.log(req.cookies)
+    console.log(req.cookies.token)
+    const token = req.cookies.token
+    if (!token) {
+        if (req._parsedOriginalUrl.pathname !== '/login-register.html') {
+            return res.redirect('/login-register.html');
+        }
+        return next()
+    }//This may not be neccesary, since I still want users to be able to play if they are anonymous
+    try {
+        //important part
+        const user = jwt.verify(token, process.env.JWT_SECRET_KEY);
+        if (user && req._parsedOriginalUrl.pathname === '/login-register.html') {
+            return res.redirect('/user-account.html')
+        }
+        req.user = user;
+        next();
+    } catch (err) {
+        res.clearCookie("token")
+        return res.redirect("/")
+    }
+}
+
 
 module.exports = {
     getLoginRegisterPage,
     evaluateUser,
-    registerUser
+    registerUser,
+    cookieJwtAuth
 }

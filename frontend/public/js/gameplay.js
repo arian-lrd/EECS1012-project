@@ -86,6 +86,7 @@ function handleImgClick(event){
             level ++;
 
             disableImgs();
+            sendScoreToServer();
             // wait until last image is not highlighted anymore, plus a little bit more time
             setTimeout(gameTurn, highlightTime + nextImgDelay * 2);
         }
@@ -158,7 +159,7 @@ function resetGameVariables(){
     playerTimes = [];
     level = 1;
     score = 0;
-    //restarts = 0; // Ensure restarts are also reset if necessary
+    highScore = fetchHighScore();
     highlightTime = 500;
     nextImgDelay = 300;
     document.getElementById("mistake").pause();
@@ -190,7 +191,8 @@ async function fetchHighScore() {
         if (!response.ok) {
             throw new Error('Failed to fetch high score');
         }
-        const { highScore } = await response.json();
+        const data = await response.json();
+        highScore = data.highScore;
         displayHighScore(highScore);
     } catch (error) {
         console.error('Error fetching high score:', error);
@@ -198,6 +200,7 @@ async function fetchHighScore() {
 }
 
 function displayHighScore(highScore) {
+    console.log("High Score:", highScore);
     const highScoreElement = document.getElementById("high-score");
     highScoreElement.textContent = `High score: ${highScore}`;
 }
@@ -216,9 +219,11 @@ async function sendScoreToServer() {
             headers: {
                 'Content-Type': 'application/json',
                 // Assuming you're storing the JWT in a cookie named 'token'
-                'Authorization': 'Bearer ' + document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]
+                // No need for the line below since the cookie is httpOnly
+                //'Authorization': 'Bearer ' + document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]
             },
-            body: JSON.stringify({ score: score })
+            body: JSON.stringify({ score: score }),
+            credentials: 'include'
         });
 
         if (!response.ok) {
@@ -226,10 +231,16 @@ async function sendScoreToServer() {
         }
 
         const result = await response.json();
+        if (result.success && result.highScore !== undefined) {
+            highScore = result.highScore; // Update local highScore if it was beaten
+            displayGameInfo(); // Update display information
+        }
+        console.log("Score updated successfully:", result);
+/*         
         if (result.success && result.highScore) {
             allTimeHigh = result.highScore; // Update all-time high score if needed
             displayGameInfo(); // Refresh the display to show the new all-time high score
-        }
+        } */
     } catch (error) {
         console.error('Error sending score to server:', error);
     }

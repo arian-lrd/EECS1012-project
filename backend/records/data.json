@@ -40,11 +40,6 @@
     "highScore": 0
   },
   {
-    "username": "arian@test.ca",
-    "password": "$2b$10$WQ3QuhhV6J/3HeA1TMCH1.VFEO97hhdWve1GiNRIKxmbJ51KQIHNu",
-    "highScore": 0
-  },
-  {
     "username": "arianNew@test.ca",
     "password": "$2b$10$B1UTiD2EYEGF5x63e/.ieu.TfRg8CEkc1M9TeFGZncvEipJm4GDhe",
     "highScore": 0
@@ -68,5 +63,15 @@
     "username": "a1@gmail.com",
     "password": "$2b$10$UBN5/u4oT9RuoHLuyZppfOzTDLKmvZTeUz/e7IOBX5xz1PVhw9WLe",
     "highScore": 0
+  },
+  {
+    "username": "11@g.ca",
+    "password": "$2b$10$yQ2uhWIZmCNJk4i86Mzln.y2vwOte9XG50N8UcKoE0IevD0UO8wHK",
+    "highScore": 366
+  },
+  {
+    "username": "arian@test.ca",
+    "password": "$2b$10$gFlJd5WveUf6wEtMXuwta.kwEJ15kUs4bBhquDvQMQwtzoZGtQUzS",
+    "highScore": 169
   }
 ]

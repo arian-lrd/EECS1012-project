@@ -5,28 +5,36 @@ const dataFilePath = path.join(__dirname, '..', 'records', 'data.json');
 const topTenFilePath = path.join(__dirname,  '..', 'records','topTen.json');
 
 function updateTopTenScores() {
-    fs.readFile(dataFilePath, 'utf8', (err, data) => {
-        if (err) {
-            console.error('Error reading data.json:', err);
-            return;
-        }
-
-        let users = JSON.parse(data);
-        
-        // Sort users by highScore in descending order
-        users.sort((a, b) => Number(b.highScore) - Number(a.highScore));
-
-
-        // Get the top 10 high scores
-        let topTen = users.slice(0, 10);
-
-        // Write the topTen to topTen.json
-        fs.writeFile(topTenFilePath, JSON.stringify(topTen, null, 2), (err) => {
+    return new Promise ((resolve, reject) => {
+        fs.readFile(dataFilePath, 'utf8', (err, data) => {
             if (err) {
-                console.error('Error writing topTen.json:', err);
-                return;
+                console.error('Error reading data.json:', err);
+                return reject(err);
             }
-            console.log('Top 10 high scores updated successfully.');
+    
+            let users;
+            try {
+                users = JSON.parse(data);
+            } catch (parseError) {
+                console.error('Error parsing user data:', parseError);
+                return reject(parseError);
+            }
+            // Sort users by highScore in descending order
+            users.sort((a, b) => Number(b.highScore) - Number(a.highScore));
+
+
+            // Get the top 10 high scores
+            let topTen = users.slice(0, 10);
+
+            // Write the topTen to topTen.json
+            fs.writeFile(topTenFilePath, JSON.stringify(topTen, null, 2), (err) => {
+                if (err) {
+                    console.error('Error writing topTen.json:', err);
+                    return reject(err);
+                }
+                console.log('Top 10 high scores updated successfully.');
+                resolve();
+            });
         });
     });
 }
