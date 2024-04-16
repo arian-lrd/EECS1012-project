@@ -13,7 +13,7 @@ require('dotenv').config();
 
 
 app.use(session({
-    secret: process.env.JWT_SECRET_KEY, // Replace 'your secret key' with a real secret key
+    secret: process.env.JWT_SECRET_KEY, // SEcret key loaded from .env file
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false } // Set to true if using https
@@ -33,14 +33,6 @@ app.use(express.static(path.join(__dirname , "../frontend/public")))
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 
-/* 
-/home -- only get
-/account -- get, p
-/scoreboard
-/gemplay
-/loign-register
-
-*/
 
 
 app.use('/user-account.html', accountRouter)
@@ -61,7 +53,6 @@ app.use('/gameplay', gameplayRouter);    // Changed from '/gameplay.html'
 app.use('/login-register', loginRegisterRouter); // Changed from '/login-register.html'
 app.use('/scoreboard', scoreboardRouter); // Changed from '/scoreboard.html'
 app.use('/', homeRouter); // Home router can catch the base route
-
 
 
 
