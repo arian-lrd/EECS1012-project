@@ -7,12 +7,8 @@ const  {
     updateTopTenScores
 } = require(path.join(__dirname, '..', 'controllers', 'topTenUpdate.js'))
 
-// const getScoreboardPage = (req, res)=>{
-//     res
-//     .status(200)
-//     .sendFile(path.join(__dirname, '..','..', 'frontend', 'views', 'scoreboard.html'));
-// }
 
+// Serve the scoreboard page
 const getScoreboardPage = async (req, res) => {
     try {
         await updateTopTenScores();  // Wait for the top ten scores to update
@@ -23,26 +19,7 @@ const getScoreboardPage = async (req, res) => {
     }
 };
 
-
-// const getTopScores = (req, res) =>{
-//     updateTopTenScores()
-//     fs.readFile(topTenFilePath, 'utf8', (err, data) => {
-//         if(err) {
-//             console.err("Error sending topTen.json:", err);
-//             return res.status(500).send("Error fetching top ten scores")
-//         }
-
-//         let scores = JSON.parse(data);
-
-//         scores.sort((a, b) => {
-//             return Number(b.highScore) - Number(a.highScore);
-//         });
-
-//         res.json(scores.slice(0, 10));
-
-        
-//     })
-// }
+// retreive the top 10 scores
 const getTopScores = async (req, res) => {
     try {
         // Update the top ten scores first and wait for the operation to complete

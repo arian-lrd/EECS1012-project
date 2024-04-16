@@ -21,12 +21,7 @@ router.route('/highscore')  // Add a new route for fetching the high score
     .get(cookieJwtAuth, getUserHighScore);
 
 
-
 router.post('/update-score', cookieJwtAuth, updateScore);
-
-
-// router.route('.html')
-//     .get(getUserAccount)
 
 
 module.exports = router

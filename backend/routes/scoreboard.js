@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+
+//import functions
 const {
     getScoreboardPage,
     getTopScores
@@ -8,24 +10,13 @@ const {
 } = require('../controllers/scoreboard')
 
 
-//router.use(express.json())
-
-
-//router.route('/')
-    //.method(controllers)
-
-
+// load the scoreboard page
 router.route('/')
     .get(getScoreboardPage)
-    //.method(controllers)
 
+// load the top 10 scores
 router.route('/topTen')
     .get(getTopScores)
-
-// router.route('/home')
-//     .get(getHomePage)
-
-    //.method(controllers)
 
 
 module.exports = router
