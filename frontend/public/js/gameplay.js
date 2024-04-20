@@ -10,6 +10,14 @@ var highlightTime = 500;
 var nextImgDelay = 300;
 
 const allImgs = document.querySelectorAll(".grid > img");
+const startGameBtn = document.getElementById('start-game-btn');
+const startGameScreen = document.getElementsByClassName("start-game-screen")[0];
+const gameScreen = document.getElementsByClassName("game-screen")[0];
+const gameOverScreen = document.getElementsByClassName("game-over-screen")[0];
+const quitGameBtn = document.getElementById("quit-game-btn");
+const finalScoreElement = document.getElementById("final-score");
+const rankElement = document.getElementById("rank");
+const playAgainBtn = document.getElementById("play-again-btn");
 
 function addRandomImg(){
     let max = 4;
@@ -66,11 +74,9 @@ function handleImgClick(event){
         playerSequence.push(img);
         highlight(img);
         
-        let imgScore = calclulateScore(playerTimes[playerTimes.length - 2], playerTimes[playerTimes.length - 1]);
         let beforeClick = playerTimes[playerTimes.length - 2];
         let afterClick = playerTimes[playerTimes.length - 1];
-        
-        console.log(`${level}-${playerSequence.length} reaction time: ${afterClick - beforeClick}, score: ${imgScore}`);
+        let imgScore = calclulateScore(beforeClick, afterClick);
         score += imgScore;
 
         if (score > highScore){
@@ -108,16 +114,23 @@ function isCorrect(){
 }
 
 function displayGameInfo(){
-    document.getElementById("level").innerHTML = "Level: " + level;
-    document.getElementById("current-score").innerHTML = "Score: " + score;
-    document.getElementById("high-score").innerHTML = "High score: " + highScore;
-    document.getElementById("all-time-high").innerHTML = "All-time highest score: " + allTimeHigh; 
+    document.getElementById("level").textContent = "Level: " + level;
+    document.getElementById("current-score").textContent = "Score: " + score;
+    document.getElementById("high-score").textContent = "High score: " + highScore;
+    document.getElementById("all-time-high").textContent = "All-time highest score: " + allTimeHigh; 
 }
 
 function newGame(){
+    gameOverScreen.classList.add("hide");
+    startGameScreen.classList.add("hide");
+    gameScreen.classList.remove("hide");
     resetGameVariables(); // Make sure this function resets all game-related variables
-    gameTurn();
     displayGameInfo();
+
+    // after clicking the start game button, delay starting the game
+    setTimeout(() => {
+        gameTurn();
+    }, 500);
 }
 
 function calclulateScore(beforeClick, afterClick){
@@ -162,28 +175,31 @@ function resetGameVariables(){
     highScore = fetchHighScore();
     highlightTime = 500;
     nextImgDelay = 300;
-    document.getElementById("mistake").pause();
+    document.getElementById("mistake").load();
 }
 
 function gameOver(){
     document.getElementById("mistake").play();
     disableImgs();
     restarts ++;
-    // display restart menu
     sendScoreToServer();
-    const startGameButton = document.getElementById('start-game-btn');
-    startGameButton.style.display = 'block'; // Unhide the button on game over
+
+    displayGameOverInfo();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const startGameButton = document.getElementById('start-game-btn');
-    startGameButton.addEventListener('click', () => {
-        newGame();  // Call the function that starts the game
-        startGameButton.style.display = 'none';  // Optionally hide the button after starting the game
-    });
-});
+function displayGameOverInfo(){
+    gameScreen.classList.add("hide");
+    gameOverScreen.classList.remove("hide");
+    finalScoreElement.textContent = "Your score: " + score;
+    rankElement.textContent = "This score's global rank: ";
+}
 
-//newGame();
+// enable game-related buttons
+document.addEventListener('DOMContentLoaded', () => {
+    startGameBtn.addEventListener('click', newGame);
+    quitGameBtn.addEventListener("click", gameOver);
+    playAgainBtn.addEventListener("click", newGame);
+});
 
 async function fetchHighScore() {
     try {
@@ -235,12 +251,11 @@ async function sendScoreToServer() {
             highScore = result.highScore; // Update local highScore if it was beaten
             displayGameInfo(); // Update display information
         }
-        console.log("Score updated successfully:", result);
-/*         
-        if (result.success && result.highScore) {
-            allTimeHigh = result.highScore; // Update all-time high score if needed
-            displayGameInfo(); // Refresh the display to show the new all-time high score
-        } */
+        console.log("Score updated successfully:", result);   
+        // if (result.success && result.highScore) {
+        //     allTimeHigh = result.highScore; // Update all-time high score if needed
+        //     displayGameInfo(); // Refresh the display to show the new all-time high score
+        // }
     } catch (error) {
         console.error('Error sending score to server:', error);
     }
