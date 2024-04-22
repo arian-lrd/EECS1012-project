@@ -68,39 +68,38 @@ async function gameTurn(){
 
 function handleImgClick(event){
     let img = event.currentTarget;
-    // prevent user from guessing an image multiple times while it still highlighted
+    // prevent user from guessing an image multiple times while it is still highlighted
     if (!img.classList.contains("highlighted")){
         playerTimes.push(Date.now()); // keep track of the time after an image has been clicked
         playerSequence.push(img);
         highlight(img);
-        
-        let beforeClick = playerTimes[playerTimes.length - 2];
-        let afterClick = playerTimes[playerTimes.length - 1];
-        let imgScore = calclulateScore(beforeClick, afterClick);
-        score += imgScore;
 
-        if (score > highScore){
-            highScore = score;
-        }
-    }
+        if (isCorrect()){
+            let beforeClick = playerTimes[playerTimes.length - 2];
+            let afterClick = playerTimes[playerTimes.length - 1];
+            let imgScore = calclulateScore(beforeClick, afterClick);
+            score += imgScore;
     
-    if (isCorrect()){
-        // if player has clicked on the last image on the sequence
-        if (playerSequence.length == gameSequence.length){
-            playerSequence = [];
-            playerTimes = [];
-            level ++;
-
-            disableImgs();
-            sendScoreToServer();
-            // wait until last image is not highlighted anymore, plus a little bit more time
-            setTimeout(gameTurn, highlightTime + nextImgDelay * 2);
+            if (score > highScore){
+                highScore = score;
+            }
+                
+            // if player has clicked on the last image on the sequence
+            if (playerSequence.length == gameSequence.length){
+                playerSequence = [];
+                playerTimes = [];
+                level ++;
+    
+                disableImgs();
+                sendScoreToServer();
+                // wait until last image is not highlighted anymore, plus a little bit more time
+                setTimeout(gameTurn, highlightTime + nextImgDelay * 2);
+            }
+    
+            displayGameInfo();
+        } else {
+            gameOver();
         }
-
-        displayGameInfo();
-    }
-    else {
-        gameOver();
     }
 }
 
