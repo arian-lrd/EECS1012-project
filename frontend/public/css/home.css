@@ -1,26 +1,24 @@
-/* Reset default browser styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
 }
 
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
+    background-color: #5cb85c;
+    color: white;
     text-align: center;
+    padding: 20px 0;
+}
+
+header h1 {
+    margin: 0;
 }
 
 nav ul {
     list-style-type: none;
+    padding: 0;
 }
 
 nav ul li {
@@ -29,65 +27,116 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #fff;
+    color: white;
     text-decoration: none;
 }
 
 main {
-    padding: 2rem;
+    padding: 20px;
 }
 
+
 #hero {
+    background-color: #dff0d8;
+    padding: 50px;
     text-align: center;
-    padding: 4rem 0;
-    background-color: #007bff;
-    color: #fff;
 }
 
 #hero h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    color: #5cb85c;
+    margin-bottom: 20px;
 }
 
 #hero p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+    color: #555;
+    margin-bottom: 30px;
 }
 
-.btn {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background-color: #fff;
-    color: #007bff;
-    border: 2px solid #fff;
-    border-radius: 5px;
+#hero .btn {
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px 20px;
     text-decoration: none;
-    transition: background-color 0.3s, color 0.3s;
+    border-radius: 5px;
 }
 
-.btn:hover {
-    background-color: #007bff;
-    color: #fff;
+#hero .btn:hover {
+    background-color: #4cae4c;
 }
+
 
 #features {
-    margin-top: 4rem;
+    background-color: #dff0d8;
+    padding: 50px;
+    text-align: center;
 }
 
 #features h3 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+    color: #5cb85c;
+    margin-bottom: 20px;
 }
 
 #features ul {
-    font-size: 1.2rem;
-    list-style-type: disc;
-    padding-left: 2rem;
+    list-style-type: none;
+    padding: 0;
 }
 
+#features li {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Footer Styles */
 footer {
-    background-color: #333;
-    color: #fff;
+    background-color: #1A4D2E;
+    color: white;
     text-align: center;
-    padding: 1rem;
+    padding: 20px 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    header {
+        padding: 10px 0;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    nav ul li {
+        margin-right: 10px;
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    #hero {
+        padding: 30px;
+    }
+
+    #hero h2 {
+        font-size: 24px;
+    }
+
+    #hero p {
+        font-size: 14px;
+    }
+
+    #hero .btn {
+        padding: 8px 16px;
+    }
+
+    #features {
+        padding: 30px;
+    }
+
+    #features h3 {
+        font-size: 20px;
+    }
+
+    #features li {
+        font-size: 14px;
+    }
 }

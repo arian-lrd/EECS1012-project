@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(18, 19, 20);
+    background-color: #71a46d;
     font-family: Helvetica, Arial, sans-serif;
     color: white;
 }
@@ -9,6 +9,7 @@ body {
     align-items: center;
     justify-items: center;
     height: 80vh;
+    
 }
 
 .grid {
@@ -24,6 +25,7 @@ body {
     width: 100%;
     object-fit: cover;
     cursor: pointer;
+    border-radius: 5%;
 }
 
 .highlighted {
@@ -32,6 +34,7 @@ body {
 
 .hide {
     display: none;
+    
 }
 
 .game-info {
@@ -89,7 +92,7 @@ button {
 }
 
 #quit-game-btn:hover {
-    background-color: rgb(189, 54, 50);
+    background-color: rgb(255, 8, 0);
 }
 
 #level {
@@ -121,4 +124,38 @@ button {
     @media screen and (min-width: 1100px){
         margin: 20px 35%;
     }
+}
+
+
+/* Atoosa's css */
+nav {
+    background-color: #5cb85c;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav li a {
+    color: white;
+    text-decoration: none;
+  }
+
+  nav li {
+    display: inline-block; /* Displays list items in a line */
+    list-style-type: none; /* Removes bullet points */
+    padding: 0 10px;       /* Adds spacing between items */
+}
+
+header {
+    background-color: #5cb85c;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+  }
+
+
+
+  html, body {
+    margin: 0;
+    padding: 0;
 }
