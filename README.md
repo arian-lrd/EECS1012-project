@@ -23,7 +23,8 @@ The backend is built on Node.js and Express, with session management implemented
 7. Type `localhost:5001` in your browser to test out the web application.
 
 ## Notes
-Although some features are not fully developed, the main goals of the project are achieved. These features can be further developed in the future, such as:
-- **Password Change Feature**: For enhanced security.
-- **Multiple Game Themes**: Allowing users to choose between themes like a car theme or flower theme.
+Although some features are not fully developed, the main learning objectives of the project were achieved. We plan to develope these features further in the summer.
+### Un-developed features
+- **Forgot Password**: Allows users to receive an email with password recovery instructions.
+- **Multiple Game Themes**: This allows users  to choose between varying themes for the game like Cars, Flowers, or Sports themes. Diffault implementations in current version is a Car themed game.
 - **Difficulty Levels**: Including Hard and Normal to provide challenges for various skill levels.
