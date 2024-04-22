@@ -1,9 +1,9 @@
-# EECS 12 Group Project  
+# EECS 1012 Group Project  
 * Team: Bravo
 * Members: Allen Pham, Arian Amiri, Atoosa Kordnaeij  
 
 ## Description
-This project is a web-based game application developed as part of the EECS 12 course. The game, inspired by the classic memory sequence challenge, tests players' ability to remember and replicate a series of increasingly complex sequences. Players interact with a visually engaging interface where sequences are presented using themed images and sounds to enhance the gaming experience.
+This project is a web-based game application developed as part of the EECS 1012 course. The game, inspired by the classic memory sequence challenge, tests players' ability to remember and replicate a series of increasingly complex sequences. Players interact with a visually engaging interface where sequences are presented using themed images and sounds to enhance the gaming experience.
 
 Key features of the game include:
 - **Session Management**: Users can sign up, log in, and have their sessions maintained for a seamless gaming experience.
@@ -23,12 +23,13 @@ The backend is built on Node.js and Express, with session management implemented
 7. Type `localhost:5001` in your browser to test out the web application.
 
 ## Notes
-Although some features are not fully developed, the main learning objectives of the project were achieved. We plan to develope these features further in the summer.
+Although some features are not fully developed, the main learning objectives of the project were achieved. We plan to develop these features further in the summer.
 ### Un-developed features
 - **Forgot Password**: Allows users to receive an email with password recovery instructions.
-- **Multiple Game Themes**: This allows users  to choose between varying themes for the game like Cars, Flowers, or Sports themes. Diffault implementations in current version is a Car themed game.
-- **Difficulty Levels**: Including Hard and Normal to provide challenges for various skill levels.
-- **Safely deleting deprecated features**: Some features that were discussd in design phase no longer seem reasonable. all-time highest score is now confusing for users.
+- **Multiple Game Themes**: This allows users to choose between varying themes for the game's images like cars, flowers, or sports. Default implementation in current version is a car-themed game.
+- **Difficulty Levels**: Option to choose between Hard and Normal modes to provide challenges for players of various skill levels.
+- **Save Score After Game Over**: Ability for an anonymous player to save their score once they create a new account.
+- **Safely deleting deprecated features**: Some features that were discussed in design phase no longer seem reasonable. All-time highest score might be confused with the high score, which was originally supposed to represent the user's highest score in current login session.
 ### Minor bugs
 - **Scoreboard not showing for anonymous players**: Sometimes if an un-registered user tries loading the scoreboard page they encounter an error
-- **Anonymous player high score**: When an anonymous player plays the game the value of High Score is the object promis from the backend. Propper handling of the promise for un-registered users shall be implemented.
+- **Anonymous player high score**: When an anonymous player plays the game the value of High Score is the object promise from the backend. Proper handling of the promise for un-registered users shall be implemented.
