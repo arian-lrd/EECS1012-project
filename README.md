@@ -28,3 +28,7 @@ Although some features are not fully developed, the main learning objectives of 
 - **Forgot Password**: Allows users to receive an email with password recovery instructions.
 - **Multiple Game Themes**: This allows users  to choose between varying themes for the game like Cars, Flowers, or Sports themes. Diffault implementations in current version is a Car themed game.
 - **Difficulty Levels**: Including Hard and Normal to provide challenges for various skill levels.
+- **Safely deleting deprecated features**: Some features that were discussd in design phase no longer seem reasonable. all-time highest score is now confusing for users.
+### Minor bugs
+- **Scoreboard not showing for anonymous players**: Sometimes if an un-registered user tries loading the scoreboard page they encounter an error
+- **Anonymous player high score**: When an anonymous player plays the game the value of High Score is the object promis from the backend. Propper handling of the promise for un-registered users shall be implemented.
