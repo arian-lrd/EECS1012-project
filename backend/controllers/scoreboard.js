@@ -1,8 +1,11 @@
+// Import require modules
 const path = require('path');
 const fs = require('fs')
 
+//// Set up the paths to files that will be used in this code
 const topTenFilePath = path.join(__dirname, '..', 'records', 'topTen.json')
 
+// Import required controllers
 const  {
     updateTopTenScores
 } = require(path.join(__dirname, '..', 'controllers', 'topTenUpdate.js'))
@@ -41,6 +44,7 @@ const getTopScores = async (req, res) => {
 };
 
 
+// Export the controllers
 module.exports = {
     getScoreboardPage,
     getTopScores

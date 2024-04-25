@@ -3,7 +3,6 @@ const path = require('path');
 const fs = require('fs')
 
 //// Set up the paths to files that will be used in this code
-
 // Set up path to data.json file
 const dataFilePath = path.join(__dirname, '..', 'records', 'data.json');
 
