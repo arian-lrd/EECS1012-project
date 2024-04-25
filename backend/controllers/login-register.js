@@ -1,7 +1,10 @@
+//// Import the required modules
 const path = require('path');
 const jwt = require('jsonwebtoken');
 const fs = require('fs')
 const bcrypt = require('bcrypt');
+
+// Set JWT secret key and salting rounds
 const saltRounds = 10;
 const usersDataFile = path.join(__dirname, '../records/data.json')
 let users = require(usersDataFile)

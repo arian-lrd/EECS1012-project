@@ -1,16 +1,16 @@
+// Import the required modules
 const path = require('path');
 
-const getHomePage = (req, res)=>{
+
+// Define the getHomePage function serve the homepage html
+const getHomePage = (req, res) => {
     res
     .status(200)
     .sendFile(path.join(__dirname, '..','..', 'frontend', 'views', 'home.html'));
 }
 
-//const namei = path.join(__dirname, '..', '..', 'frontend', 'views', 'home.html')
 
-//console.log(namei)
-
-
+// Export controller functions 
 module.exports = {
     getHomePage
 }

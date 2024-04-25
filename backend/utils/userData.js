@@ -1,7 +1,12 @@
+// Import required libraries
 const fs = require('fs');
 const path = require('path');
+
+// Set paths to files
 const dataFilePath = path.join(__dirname, '..', 'records', 'data.json');
 
+
+// Function to load users from data.json
 function loadUsers() {
     try {
         const data = fs.readFileSync(dataFilePath, 'utf8');
@@ -13,6 +18,8 @@ function loadUsers() {
     }
 }
 
+
+// Function to save users to json.data
 function saveUsers(users) {
     try {
         fs.writeFileSync(dataFilePath, JSON.stringify(users, null, 2), 'utf8');
@@ -23,6 +30,8 @@ function saveUsers(users) {
     }
 }
 
+
+// Function to delete users from json.data
 function deleteUser(username) {
     let users = loadUsers();
     const filteredUsers = users.filter(user => user.username !== username);
@@ -30,11 +39,14 @@ function deleteUser(username) {
 }
 
 
+// Function to find users through: usersname
 function getUserByUsername(username) {
     const users = loadUsers();
     return users.find(user => user.username === username);
 }
 
+
+// Export functions
 module.exports = {
     loadUsers,
     getUserByUsername,
