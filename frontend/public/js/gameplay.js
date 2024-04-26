@@ -63,14 +63,14 @@ async function gameTurn(){
         await highlight(img);
     }  
     enableImgs();
-    playerTimes.push(Date.now()); // keep track of the time before the first image is clicked
+    playerTimes.push(Date.now()); // Keep track of the time before the first image is clicked
 }
 
 function handleImgClick(event){
     let img = event.currentTarget;
-    // prevent user from guessing an image multiple times while it is still highlighted
+    // Prevent user from guessing an image multiple times while it is still highlighted
     if (!img.classList.contains("highlighted")){
-        playerTimes.push(Date.now()); // keep track of the time after an image has been clicked
+        playerTimes.push(Date.now()); // Keep track of the time after an image has been clicked
         playerSequence.push(img);
         highlight(img);
 
@@ -84,7 +84,7 @@ function handleImgClick(event){
                 highScore = score;
             }
                 
-            // if player has clicked on the last image on the sequence
+            // If player has clicked on the last image on the sequence
             if (playerSequence.length == gameSequence.length){
                 playerSequence = [];
                 playerTimes = [];
@@ -92,7 +92,7 @@ function handleImgClick(event){
     
                 disableImgs();
                 sendScoreToServer();
-                // wait until last image is not highlighted anymore, plus a little bit more time
+                // Wait until last image is not highlighted anymore, plus a little bit more time
                 setTimeout(gameTurn, highlightTime + nextImgDelay * 2);
             }
     
@@ -126,7 +126,7 @@ function newGame(){
     resetGameVariables(); // Make sure this function resets all game-related variables
     displayGameInfo();
 
-    // after clicking the start game button, delay starting the game
+    // After clicking the start game button, delay starting the game
     setTimeout(() => {
         gameTurn();
     }, 500);
@@ -193,7 +193,7 @@ function displayGameOverInfo(){
     rankElement.textContent = "This score's global rank: ";
 }
 
-// enable game-related buttons
+// Enable game-related buttons
 document.addEventListener('DOMContentLoaded', () => {
     startGameBtn.addEventListener('click', newGame);
     quitGameBtn.addEventListener("click", gameOver);
