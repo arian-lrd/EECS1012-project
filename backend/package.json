@@ -1,5 +1,13 @@
 {
-  "name": "eecs1012-project",
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2",
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0"
+  },
+  "name": "project-code",
   "version": "1.0.0",
   "description": "* Team: Bravo\r * Members: Allen Pham, Arian Amiri, Atoosa Kordnaeij",
   "main": "index.js",
