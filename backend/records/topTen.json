@@ -20,6 +20,11 @@
     "highScore": "1000"
   },
   {
+    "username": "testing@gmail.com",
+    "password": "$2b$10$Zkx2vTJkJ/ysU5X3A3UUgOhKI7Op7siQoDyVe/EQ50tosYIaC4xw.",
+    "highScore": 372
+  },
+  {
     "username": "11@g.ca",
     "password": "$2b$10$yQ2uhWIZmCNJk4i86Mzln.y2vwOte9XG50N8UcKoE0IevD0UO8wHK",
     "highScore": 366
@@ -42,11 +47,6 @@
   {
     "username": "4@g.ca",
     "password": "4",
-    "highScore": 0
-  },
-  {
-    "username": "5@g.ca",
-    "password": "$2b$10$V8BDriktvq7EsP.QPLi5BO2apRwYcGxS9GYmIiW4RvZtctsw/np3m",
     "highScore": 0
   }
 ]
