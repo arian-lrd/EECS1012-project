@@ -1,0 +1,129 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #5cb85c;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.buttons-container {
+    text-align: center;
+}
+
+/* .modal-header, h4, .close {
+    background-color: #5cb85c;
+    color:white !important;
+    text-align: center;
+    font-size: 30px;
+}
+.modal-footer {
+    background-color: #f9f9f9;
+} */
+/* Modal Styles */
+.modal-header, .modal-footer {
+    background-color: #5cb85c;
+    color: white;
+    text-align: center;
+    border: none;
+}
+
+.modal-body {
+    padding: 35px 50px;
+}
+
+.modal-title {
+    font-size: 24px;
+}
+
+.modal-content {
+    border-radius: 10px;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    border-radius: 20px;
+}
+
+.btn {
+    border-radius: 20px;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #1A4D2E;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    header {
+        padding: 10px 0;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    nav ul li {
+        margin-right: 10px;
+    }
+}
+
+.untracked-warning {
+    width: 40%;                /* Set the width to 80% of its container */
+    background-color: #5cb85c; /* Set the background color to blue */
+    color: white;              /* Set the text color to white for better contrast */
+    padding: 10px;             /* Add some padding inside the box */
+    margin: 20px auto;         /* Center the box horizontally and add some vertical spacing */
+    text-align: center;        /* Center the text inside the box */
+    border-radius: 10px;       /* Optional: adds rounded corners */
+    margin-top: 0;
+}
+
+.big-button {
+    font-size: 24px;      /* Larger font size */
+    padding: 15px 30px;   /* Increased padding for a larger button */
+    margin: 10px;         /* Adds space around the buttons */
+
+}

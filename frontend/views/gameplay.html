@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simon Says</title>
+        <link rel="stylesheet" href="/css/gameplay.css"></link>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <li><a href="./user-account.html">Account</a></li>
+                <li><a href="./home.html">Home</a></li>
+                <li><a href="./scoreboard.html">Scoreboard</a></li>
+                <li><a href="./login-register.html">Login/Logout</a></li>
+            </nav>
+        </header>
+        <div class="start-game-screen">
+            <button class="start" id="start-game-btn">Start Game</button>
+        </div>
+
+        <div class="game-screen hide">
+            <div class="grid">
+                <img id="0" src="/images/car_images/berlineMicrocar.png" alt="berline microcar">
+                <img id="1" src="images/car_images/fiatMultipla.png" alt="fiat multipla">
+                <img id="2" src="/images/car_images/ptCruiser.png" alt="pt cruiser">
+                <img id="3" src="/images/car_images//mitsuokaOrochi.png" alt="mitsuoka orochi">
+            </div>
+            <div class="game-info">
+                <button id="quit-game-btn">Quit</button>
+                <div id="level"></div>
+                <div id="current-score"></div>
+                <div id="high-score"></div>
+                <div id="all-time-high"></div>
+            </div>
+        </div>
+        
+        <div class="game-over-screen hide">
+            <h1>Game Over</h1>
+            <div class="game-info">               
+                <div id="final-score"></div>
+                <div id="rank"></div>
+                <a href="./user-account.html">
+                    <button class="basic-btn">User Home</button>
+                </a>
+                <a href="./scoreboard.html">
+                    <button class="basic-btn">Scoreboard</button>
+                </a>
+                <button class="start" id="play-again-btn">Play again</button>
+                <!-- <a href="./login-register.html">
+                    <button class="login">Login/Register to keep your score</button>
+                </a> -->
+            </div>
+        </div>
+
+        <audio id="highlight0">
+            <source src="/sounds/highlight0.wav">
+        </audio>
+        <audio id="highlight1">
+            <source src="/sounds/highlight1.wav" type="audio/wav">
+        </audio>
+        <audio id="highlight2">
+            <source src="/sounds/highlight2.wav" type="audio/wav">
+        </audio>
+        <audio id="highlight3">
+            <source src="/sounds/highlight3.wav" type="audio/wav">
+        </audio>
+        <audio id="mistake">
+            <source src="/sounds/mistake.wav" type="audio/wav">
+        </audio>
+        <script src="/js/gameplay.js" type="text/javascript"></script>
+
+    </body>
+</html>
